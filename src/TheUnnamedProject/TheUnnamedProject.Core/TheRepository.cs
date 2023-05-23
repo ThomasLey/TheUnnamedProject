@@ -47,19 +47,19 @@ namespace TheUnnamedProject.Core
                 {
                     Name = "eBook", TitlePattern = "{title}_{author}_{publisher}", Fields = new[]
                     {
-                        new FieldType() { Name = "Title", Type = "text" },
-                        new FieldType() { Name = "Author", Type = "text" },
-                        new FieldType() { Name = "Publisher", Type = "text" },
-                        new FieldType() { Name = "Year", Type = "number" },
+                        new FieldType() { Name = "Title", Type = "string" },
+                        new FieldType() { Name = "Author", Type = "string" },
+                        new FieldType() { Name = "Publisher", Type = "string" },
+                        new FieldType() { Name = "Year", Type = "int" },
                     }
                 },
                 new DocumentType()
                 {
                     Name = "DataSheet", TitlePattern = "{component}_{purpose}", Fields = new[]
                     {
-                        new FieldType() { Name = "Component", Type = "text" },
-                        new FieldType() { Name = "Purpose", Type = "text" },
-                        new FieldType() { Name = "Source", Type = "text" },
+                        new FieldType() { Name = "Component", Type = "string" },
+                        new FieldType() { Name = "Purpose", Type = "string" },
+                        new FieldType() { Name = "Source", Type = "string" },
                     }
                 },
                 new DocumentType()
@@ -67,9 +67,9 @@ namespace TheUnnamedProject.Core
                     Name = "Letter", TitlePattern = "{date}_{from}_{to}_{title}", Fields = new[]
                     {
                         new FieldType() { Name = "Date", Type = "date" },
-                        new FieldType() { Name = "From", Type = "text" },
-                        new FieldType() { Name = "To", Type = "text" },
-                        new FieldType() { Name = "Title", Type = "text" },
+                        new FieldType() { Name = "From", Type = "string" },
+                        new FieldType() { Name = "To", Type = "string" },
+                        new FieldType() { Name = "Title", Type = "string" },
                     }
                 },
                 new DocumentType()
@@ -77,7 +77,7 @@ namespace TheUnnamedProject.Core
                     Name = "BulletJournal", TitlePattern = "{date}_{title}", Fields = new[]
                     {
                         new FieldType() { Name = "Date", Type = "date" },
-                        new FieldType() { Name = "Title", Type = "text" },
+                        new FieldType() { Name = "Title", Type = "string" },
                     }
                 },
             });

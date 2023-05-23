@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MagicBox.Extensions;
 using Nada.Collections;
+using NZazu.Contracts;
 using TheUnnamedProject.Core;
 using Path = System.IO.Path;
 
@@ -61,12 +63,16 @@ namespace TheUnnamedProject.WpfUi
             {
                 var fi = new FileInfo(file);
                 var relativePath = filemap.StorePattern + Path.DirectorySeparatorChar + docType.TitlePattern + fi.Extension;
-                var docParams = new Dictionary<string, string>();
 
                 // todo fill properties them!
-                docParams.Add("Date", "2003-04-30");
-                docParams.Add("Title", "April 2023");
+                var dlg = new PropertyWindow();
+                dlg.DocumentType = docType;
+                dlg.File = fi.FullName;
 
+                var dlgRes = dlg.ShowDialog();
+                if (!dlgRes.HasValue || dlgRes.Value == false) continue;
+
+                var docParams = dlg.Properties;
                 var d = new Document()
                 {
                     DocumentType = docType.Name,
@@ -110,6 +116,27 @@ namespace TheUnnamedProject.WpfUi
             foreach (var parameter in parameters)
                 result = result.Replace("{" + parameter.Key.ToLower() + "}", parameter.Value);
             return result;
+        }
+    }
+
+    public static class DocumentTypeNZazuExtensions
+    {
+        public static FieldDefinition[] ToNZazu(this DocumentType source)
+        {
+            var result = new List<FieldDefinition>();
+
+            foreach (var type in source.Fields)
+            {
+                var fd = new FieldDefinition()
+                {
+                    Key = type.Name,
+                    Type = type.Type
+                };
+
+                result.Add(fd);
+            }
+
+            return result.ToArray();
         }
     }
 }
