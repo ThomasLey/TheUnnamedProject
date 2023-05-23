@@ -20,6 +20,11 @@ namespace TheUnnamedProject.Core
             return _context.Get<Document>();
         }
 
+        public void SetDocuments(IEnumerable<Document> documents)
+        {
+            _context.Save(documents);
+        }
+
         public IEnumerable<DocumentType> GetDocumentTypes()
         {
             return _context.Get<DocumentType>();
@@ -67,12 +72,21 @@ namespace TheUnnamedProject.Core
                         new FieldType() { Name = "Title", Type = "text" },
                     }
                 },
+                new DocumentType()
+                {
+                    Name = "BulletJournal", TitlePattern = "{date}_{title}", Fields = new[]
+                    {
+                        new FieldType() { Name = "Date", Type = "date" },
+                        new FieldType() { Name = "Title", Type = "text" },
+                    }
+                },
             });
 
             // generate all these filemaps
             var fm = new[]
             {
                 new Filemap() { Name = "eBook", StorePattern = "eBook", DocTypes = "ebook,datasheet" },
+                new Filemap() { Name = "Bullet Journal", StorePattern = "journal", DocTypes = "bulletjournal" },
                 new Filemap() { Name = "Letter", StorePattern = "letter" },
                 new Filemap() { Name = "Sent Letter", Parent = "Letter", StorePattern = "letter", DocTypes = "letter" },
                 new Filemap()
@@ -85,12 +99,8 @@ namespace TheUnnamedProject.Core
             {
                 Directory.CreateDirectory(Path.Combine(_dataPath, "..", filemap.StorePattern!));
             }
-        }
-    }
 
-    public class Document
-    {
-        public string DocumentType { get; set; }
-        public string Filemap { get; set; }
+            _context.Save(Array.Empty<Document>());
+        }
     }
 }

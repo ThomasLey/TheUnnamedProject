@@ -15,8 +15,8 @@ namespace TheUnnamedProject.Core.Tests
             if (Directory.Exists(_testPath)) Directory.Delete(_testPath, true);
             var sut = new TheRepository(_testPath);
             sut.EnsureStore();
-            sut.GetDocumentTypes().Count().Should().Be(3);
-            sut.GetFilemaps().Count().Should().Be(2);
+            sut.GetDocumentTypes().Count().Should().Be(4);
+            sut.GetFilemaps().Count().Should().Be(3);
         }
     }
 }
