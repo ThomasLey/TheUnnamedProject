@@ -7,7 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheUnnamedProject.Core", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheUnnamedProject.Core.Tests", "TheUnnamedProject.Core.Tests\TheUnnamedProject.Core.Tests.csproj", "{C6911563-8E43-4C77-8D48-D54523186F87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheUnnamedProject.WpfUi", "TheUnnamedProject.WpfUi\TheUnnamedProject.WpfUi.csproj", "{3D9A44DA-2B27-46E2-8630-2AE3D5FFD86C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheUnnamedProject.WpfUi", "TheUnnamedProject.WpfUi\TheUnnamedProject.WpfUi.csproj", "{3D9A44DA-2B27-46E2-8630-2AE3D5FFD86C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NZazu", "NZazu", "{D1D9A786-6ADC-40AB-BC9B-6969AB89A68C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZazu", "NZazu\NZazu.csproj", "{E1D0442F-73BD-443D-895B-4650270D2580}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZazu.Contracts", "NZazu.Contracts\NZazu.Contracts.csproj", "{4D469864-C26E-483E-99DB-DE7305EAAA4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEdifis", "NEdifis\NEdifis.csproj", "{E5DBDC02-449D-4EE1-B66B-B25D847BB4ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +35,26 @@ Global
 		{3D9A44DA-2B27-46E2-8630-2AE3D5FFD86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D9A44DA-2B27-46E2-8630-2AE3D5FFD86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D9A44DA-2B27-46E2-8630-2AE3D5FFD86C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1D0442F-73BD-443D-895B-4650270D2580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1D0442F-73BD-443D-895B-4650270D2580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1D0442F-73BD-443D-895B-4650270D2580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1D0442F-73BD-443D-895B-4650270D2580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D469864-C26E-483E-99DB-DE7305EAAA4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D469864-C26E-483E-99DB-DE7305EAAA4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D469864-C26E-483E-99DB-DE7305EAAA4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D469864-C26E-483E-99DB-DE7305EAAA4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5DBDC02-449D-4EE1-B66B-B25D847BB4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5DBDC02-449D-4EE1-B66B-B25D847BB4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5DBDC02-449D-4EE1-B66B-B25D847BB4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5DBDC02-449D-4EE1-B66B-B25D847BB4ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1D0442F-73BD-443D-895B-4650270D2580} = {D1D9A786-6ADC-40AB-BC9B-6969AB89A68C}
+		{4D469864-C26E-483E-99DB-DE7305EAAA4F} = {D1D9A786-6ADC-40AB-BC9B-6969AB89A68C}
+		{E5DBDC02-449D-4EE1-B66B-B25D847BB4ED} = {D1D9A786-6ADC-40AB-BC9B-6969AB89A68C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EBE08FF-308D-4D13-8822-9922887163C3}

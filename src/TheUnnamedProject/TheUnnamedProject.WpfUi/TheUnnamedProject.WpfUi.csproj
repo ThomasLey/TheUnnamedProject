@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NEdifis\NEdifis.csproj" />
+    <ProjectReference Include="..\NZazu.Contracts\NZazu.Contracts.csproj" />
+    <ProjectReference Include="..\NZazu\NZazu.csproj" />
     <ProjectReference Include="..\TheUnnamedProject.Core\TheUnnamedProject.Core.csproj" />
   </ItemGroup>
 
