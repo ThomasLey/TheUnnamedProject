@@ -19,7 +19,7 @@ namespace NZazu.Fields
 
         protected override Control CreateValueControl()
         {
-            DateFormat = Definition.Settings.Get("Format");
+            DateFormat = Definition.Settings.Get("Format", "o");
             return new DatePicker {ToolTip = Definition.Description};
         }
 

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Nada.Collections;
+﻿using Nada.Collections;
 using Nada.JStore;
 
 namespace TheUnnamedProject.Core
@@ -12,7 +11,7 @@ namespace TheUnnamedProject.Core
         public TheRepository(string path)
         {
             _dataPath = Path.Combine(path, ".data");
-            var fileReader = new FileReader(_dataPath);
+            var fileReader = new FileStore(_dataPath);
             _context = new JsonFileStoreContext(fileReader);
         }
         public IEnumerable<Document> GetDocuments()
@@ -45,39 +44,39 @@ namespace TheUnnamedProject.Core
             {
                 new DocumentType()
                 {
-                    Name = "eBook", TitlePattern = "{title}_{author}_{publisher}", Fields = new[]
+                    Name = "eBook", TitlePattern = "{string|title}_{string|author}_{string|publisher}", Fields = new[]
                     {
-                        new FieldType() { Name = "Title", Type = "string" },
-                        new FieldType() { Name = "Author", Type = "string" },
-                        new FieldType() { Name = "Publisher", Type = "string" },
-                        new FieldType() { Name = "Year", Type = "int" },
+                        new FieldType() { Name = "title", Type = "string" },
+                        new FieldType() { Name = "author", Type = "string" },
+                        new FieldType() { Name = "publisher", Type = "string" },
+                        new FieldType() { Name = "year", Type = "int" },
                     }
                 },
                 new DocumentType()
                 {
-                    Name = "DataSheet", TitlePattern = "{component}_{purpose}", Fields = new[]
+                    Name = "DataSheet", TitlePattern = "{string|component}_{string|purpose}", Fields = new[]
                     {
-                        new FieldType() { Name = "Component", Type = "string" },
-                        new FieldType() { Name = "Purpose", Type = "string" },
-                        new FieldType() { Name = "Source", Type = "string" },
+                        new FieldType() { Name = "component", Type = "string" },
+                        new FieldType() { Name = "purpose", Type = "string" },
+                        new FieldType() { Name = "source", Type = "string" },
                     }
                 },
                 new DocumentType()
                 {
-                    Name = "Letter", TitlePattern = "{date}_{from}_{to}_{title}", Fields = new[]
+                    Name = "Letter", TitlePattern = "{datetime|date|yyyyMMdd}_{string|from}_{string|to}_{string|title}", Fields = new[]
                     {
-                        new FieldType() { Name = "Date", Type = "date" },
-                        new FieldType() { Name = "From", Type = "string" },
-                        new FieldType() { Name = "To", Type = "string" },
-                        new FieldType() { Name = "Title", Type = "string" },
+                        new FieldType() { Name = "date", Type = "date" },
+                        new FieldType() { Name = "from", Type = "string" },
+                        new FieldType() { Name = "to", Type = "string" },
+                        new FieldType() { Name = "title", Type = "string" },
                     }
                 },
                 new DocumentType()
                 {
-                    Name = "BulletJournal", TitlePattern = "{date}_{title}", Fields = new[]
+                    Name = "BulletJournal", TitlePattern = "{datetime|date|yyyyMMdd}_{string|title}", Fields = new[]
                     {
-                        new FieldType() { Name = "Date", Type = "date" },
-                        new FieldType() { Name = "Title", Type = "string" },
+                        new FieldType() { Name = "date", Type = "date" },
+                        new FieldType() { Name = "title", Type = "string" },
                     }
                 },
             });
