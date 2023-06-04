@@ -3,19 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TheUnnamedProject.WpfUi"
-        xmlns:nz="http://schemas.nzazu.com/wpf/xaml/nzazu"
+        xmlns:nZazu="clr-namespace:Nada.NZazu;assembly=Nada.NZazu"
         mc:Ignorable="d"
-        Title="PropertyWindow" Height="550" Width="605">
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
-            <nz:NZazuView x:Name="View" Height="500" Width="300"/>
-            <WebBrowser x:Name="Browser" Width="300" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+        Title="PropertyWindow" Height="550" Width="1094">
+    <DockPanel >
+        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" DockPanel.Dock="Bottom">
             <Button Content="OK" Click="ButtonBase_OnClick" />
             <Button Content="Cancel" Click="CancelClick" />
             <Button Content="Open" Click="Open_OnClick" />
         </StackPanel>
-    </StackPanel>
+
+            <nZazu:NZazuView x:Name="View"/>
+    </DockPanel>
 </Window>

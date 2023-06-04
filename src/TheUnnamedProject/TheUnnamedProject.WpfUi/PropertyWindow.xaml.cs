@@ -1,7 +1,8 @@
-﻿using NZazu.Contracts;
+﻿using Nada.NZazu.Contracts;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Documents;
 using TheUnnamedProject.Core;
 
 namespace TheUnnamedProject.WpfUi
@@ -58,7 +59,13 @@ namespace TheUnnamedProject.WpfUi
 
         private void Open_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("start", _file);
+            var pi = new ProcessStartInfo()
+            {
+                UseShellExecute = true,
+                FileName = _file,
+                Verb = "OPEN"
+            };
+            Process.Start(pi);
         }
     }
 }

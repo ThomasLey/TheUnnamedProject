@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Nada.NZazu" Version="0.2.4" />
+    <PackageReference Include="Nada.NZazu.Contracts" Version="0.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TranslationLibrary\TranslationLibrary.csproj" />
-    <ProjectReference Include="..\NEdifis\NEdifis.csproj" />
     <ProjectReference Include="..\NZazu.Contracts\NZazu.Contracts.csproj" />
     <ProjectReference Include="..\NZazu\NZazu.csproj" />
     <ProjectReference Include="..\TheUnnamedProject.Core\TheUnnamedProject.Core.csproj" />

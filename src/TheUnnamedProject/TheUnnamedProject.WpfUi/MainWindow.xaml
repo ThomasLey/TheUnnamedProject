@@ -3,10 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TheUnnamedProject.WpfUi"
-        xmlns:self="clr-namespace:TheUnnamedProject.Core;assembly=TheUnnamedProject.Core"
-        xmlns:collections="clr-namespace:Nada.Collections;assembly=Nada"
-        xmlns:nz="http://schemas.nzazu.com/wpf/xaml/nzazu"
+        xmlns:nZazu="clr-namespace:Nada.NZazu;assembly=Nada.NZazu"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -45,7 +42,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <nz:NZazuView Grid.Column="2" Grid.Row="1" x:Name="View"  />
+        <nZazu:NZazuView Grid.Column="2" Grid.Row="1" x:Name="View"  />
                       <!--<TextBlock x:Name="Properties"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="NoWrap" Text="TextBlock" VerticalAlignment="Top"/>-->
         <Button Grid.Column="2" Content="Save" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Click="Save_OnClick">
         </Button>

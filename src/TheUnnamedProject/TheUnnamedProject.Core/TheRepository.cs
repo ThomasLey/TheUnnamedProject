@@ -1,5 +1,5 @@
-﻿using Nada.Collections;
-using Nada.JStore;
+﻿using Nada.Core.Collections;
+using Nada.Core.JStore;
 
 namespace TheUnnamedProject.Core
 {

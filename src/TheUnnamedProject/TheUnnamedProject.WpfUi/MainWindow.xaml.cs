@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Nada.Collections;
-using Nada.Extensions;
-using NZazu.Contracts;
+using Nada.Core.Collections;
+using Nada.Core.Extensions;
+using Nada.Core.Replacer;
+using Nada.NZazu.Contracts;
 using TheUnnamedProject.Core;
-using TranslationLibrary;
 using Path = System.IO.Path;
 
 namespace TheUnnamedProject.WpfUi
@@ -22,7 +22,7 @@ namespace TheUnnamedProject.WpfUi
         private readonly string _path = "c:\\Workspace\\_UnnamedTestEnsure";
         private readonly TheRepository _repo;
         private readonly List<Document> _documents = new();
-        private readonly ITranslationParser _replacer;
+        private readonly IPropertyParser _replacer;
 
         public MainWindow()
         {
@@ -31,7 +31,7 @@ namespace TheUnnamedProject.WpfUi
             // todo in production let user open folder
             _repo = new TheRepository(_path);
             _repo.EnsureStore();
-            _replacer = new TranslationParserFactory().Create(CultureInfo.CurrentCulture);
+            _replacer = new PropertyParserFactory().Create(CultureInfo.CurrentCulture);
             Loaded += WindowLoaded;
         }
 
