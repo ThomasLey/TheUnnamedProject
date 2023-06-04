@@ -1,26 +1,31 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using Nada.Core.Extensions;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Nada.Core.Collections;
-using Nada.Core.Extensions;
 using Nada.Core.Replacer;
 using Nada.NZazu.Contracts;
 using TheUnnamedProject.Core;
+using TheUnnamedProject.Core.Model;
 using Path = System.IO.Path;
+using System.Windows.Forms;
+using DataFormats = System.Windows.DataFormats;
+using DragEventArgs = System.Windows.DragEventArgs;
 
 namespace TheUnnamedProject.WpfUi
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private readonly string _path = "c:\\Workspace\\_UnnamedTestEnsure";
-        private readonly TheRepository _repo;
+        private string _path = "c:\\Workspace\\_UnnamedTestEnsure";
+        private TheRepository _repo;
         private readonly List<Document> _documents = new();
         private readonly IPropertyParser _replacer;
 
@@ -37,6 +42,12 @@ namespace TheUnnamedProject.WpfUi
 
         private void WindowLoaded(object sender, RoutedEventArgs e)
         {
+            LoadFilemapTree();
+        }
+
+        private void LoadFilemapTree()
+        {
+            Filemap.Items.Clear();
             var filemap = _repo.GetFilemaps();
             filemap.ForEach(x => Filemap.Items.Add(x));
 
@@ -59,6 +70,8 @@ namespace TheUnnamedProject.WpfUi
 
             foreach (var file in files)
             {
+                var originalProperties = new Dictionary<string, string>();
+
                 var fi = new FileInfo(file);
                 var relativePath = filemap.StorePattern + Path.DirectorySeparatorChar + docType.TitlePattern + fi.Extension;
 
@@ -71,20 +84,26 @@ namespace TheUnnamedProject.WpfUi
                 if (!dlgRes.HasValue || dlgRes.Value == false) continue;
 
                 var docParams = dlg.Properties;
+                originalProperties.Add("OriginalTitle", fi.Name);
+                originalProperties.Add("Title", _replacer.Parse(docType.TitlePattern, docParams));
+
                 var d = new Document()
                 {
+                    Id = Guid.NewGuid(),
+                    Hash = fi.GetMD5Hash(),
                     DocumentType = docType.Name,
-                    Filemap = filemap.Name,
-                    OriginalTitle = fi.Name,
+                    FilemapId = filemap.Id,
                     RelativeFileName = _replacer.Parse(relativePath, docParams),
-                    Title = _replacer.Parse(docType.TitlePattern, docParams),
-                    Properties = docParams,
+                    UserProperties = docParams,
+                    DocumentProperties = originalProperties
                 };
 
                 fi.CopyTo(Path.Combine(_path, d.RelativeFileName));
 
                 _documents.Add(d);
             }
+
+            e.Handled = true;
         }
 
         private void Filemap_Selected(object sender, RoutedEventArgs e)
@@ -94,7 +113,7 @@ namespace TheUnnamedProject.WpfUi
             var filemap = src?.Item;
             if (filemap == null) return;
 
-            var files = _documents.Where(x => x.Filemap == filemap.Name);
+            var files = _documents.Where(x => x.FilemapId == filemap.Id);
 
             Documents.Items.Clear();
             files.ForEach(x => Documents.Items.Add(x));
@@ -104,16 +123,34 @@ namespace TheUnnamedProject.WpfUi
         {
             _repo.SetDocuments(_documents.ToArray());
         }
+
+        private void OpenDirectory(object sender, RoutedEventArgs e)
+        {
+            using var fbd = new FolderBrowserDialog();
+            var result = fbd.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+            {
+                _path = fbd.SelectedPath;
+                _repo = new TheRepository(fbd.SelectedPath);
+                _repo.EnsureStore();
+                LoadFilemapTree();
+            }
+        }
     }
 
-    public static class StringExtensions
+    public static class FileInfoExtensions
     {
-        public static string ReplaceWith(this string source, Dictionary<string, string> parameters)
+        public static string GetMD5Hash(this FileInfo source)
         {
-            var result = source;
-            foreach (var parameter in parameters)
-                result = result.Replace("{" + parameter.Key.ToLower() + "}", parameter.Value);
-            return result;
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(source.FullName))
+                {
+                    var hash = md5.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                }
+            }
         }
     }
 

@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TranslationLibrary\TranslationLibrary.csproj" />
     <ProjectReference Include="..\NZazu.Contracts\NZazu.Contracts.csproj" />
     <ProjectReference Include="..\NZazu\NZazu.csproj" />
     <ProjectReference Include="..\TheUnnamedProject.Core\TheUnnamedProject.Core.csproj" />

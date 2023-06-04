@@ -17,7 +17,10 @@
             <RowDefinition />
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <TreeView x:Name="Filemap" Grid.Row="1" AllowDrop="True">
+        <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" >
+<Button Content="Open" Click="OpenDirectory"></Button>
+        </StackPanel>
+        <TreeView x:Name="Filemap" Grid.Row="1" Grid.Column="0" AllowDrop="True">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}">
                     <EventSetter Event="Drop" Handler="Filemap_OnDrop"/>

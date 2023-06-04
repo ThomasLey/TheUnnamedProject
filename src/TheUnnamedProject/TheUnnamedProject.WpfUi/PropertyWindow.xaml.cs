@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Documents;
-using TheUnnamedProject.Core;
+using TheUnnamedProject.Core.Model;
 
 namespace TheUnnamedProject.WpfUi
 {
